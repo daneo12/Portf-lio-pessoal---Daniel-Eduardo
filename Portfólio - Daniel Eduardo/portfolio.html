@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="font-['Plus_Jakarta_Sans']">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Eduardo - Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'Plus_Jakarta_Sans': ['"Plus Jakarta Sans"', 'sans-serif']
+                    },
+                    colors: {
+                        primary: {
+                            light: '#DC143C',
+                            dark: '#FF6B81'
+                        }
+                    },
+                    keyframes: {
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        'slide-up': {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fade-in 0.5s ease-out',
+                        'slide-up': 'slide-up 0.5s ease-out',
+                    }
+                }
+            }
+        }
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('temas');
+            const themeToggleDarkIcon = document.getElementById('tema-escuro');
+            const themeToggleLightIcon = document.getElementById('tema-claro');
+           
+            if (localStorage.getItem('color-theme') === 'dark' ||
+                (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+           
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+               
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+
+
+
+
+            let lastScroll = 0;
+            const navbar = document.querySelector('header');
+           
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset;
+               
+                if (currentScroll <= 0) {
+                    navbar.classList.remove('scrolled');
+                    return;
+                }
+               
+                if (currentScroll > lastScroll) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+               
+                lastScroll = currentScroll;
+            });
+        });
+    </script>
+    <style>
+      
+                #mobile-menu[aria-expanded="true"] {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        .menu-open #mobile-menu-button svg {
+            display: none;
+        }
+        .menu-open #mobile-menu-button:after {
+            content: '×';
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+    </style>
+
+
+
+
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 min-h-screen">
+    <header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm transition-all duration-300">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+        <a href="#" class="text-2xl font-bold text-gray-800 dark:text-white">
+            <span class="text-[#DC143C] dark:text-[#FF6B81]">Daniel</span>Eduardo
+        </a>
+
+        <nav class="hidden md:flex space-x-8">
+            <a href="#inicio" class="nav-link relative text-gray-700 dark:text-gray-300 transition-all duration-300">
+                Início
+                <span class="absolute bottom-[-2px] left-0 w-0 h-0.5 bg-[#DC143C] dark:bg-[#FF6B81] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#sobre" class="nav-link relative text-gray-700 dark:text-gray-300 transition-all duration-300">
+                Sobre
+                <span class="absolute bottom-[-2px] left-0 w-0 h-0.5 bg-[#DC143C] dark:bg-[#FF6B81] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#projetos" class="nav-link relative text-gray-700 dark:text-gray-300 transition-all duration-300">
+                Projetos
+                <span class="absolute bottom-[-2px] left-0 w-0 h-0.5 bg-[#DC143C] dark:bg-[#FF6B81] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contato" class="nav-link relative text-gray-700 dark:text-gray-300 transition-all duration-300">
+                Contato
+                <span class="absolute bottom-[-2px] left-0 w-0 h-0.5 bg-[#DC143C] dark:bg-[#FF6B81] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </nav>
+
+        <div class="flex items-center space-x-4">
+            <button id="temas" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300">
+                <img id="tema-escuro" src="lua.svg" alt="" class="hidden w-5 h-5 filter brightness-0 dark:brightness-100">
+                <img id="tema-claro" src="sol.svg" alt="" class="hidden w-5 h-5 filter brightness-0 light:brightness-100">
+            </button>
+            
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-expanded="false" aria-controls="mobile-menu">
+                <svg id="menu-icon" class="h-6 w-6 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="h-6 w-6 text-gray-800 dark:text-gray-200 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg transition-all duration-300 origin-top transform scale-y-0">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-col space-y-2 py-2">
+                <a href="#inicio" class="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors">Início</a>
+                <a href="#sobre" class="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors">Sobre</a>
+                <a href="#projetos" class="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors">Projetos</a>
+                <a href="#contato" class="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors">Contato</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <main class="container mx-auto px-4 pt-32 pb-12">
+        <section id="inicio" class="flex flex-col md:flex-row items-center justify-between gap-12 mb-16 animate-slide-up">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
+                    Olá, eu sou <span class="text-[#DC143C] dark:text-[#FF6B81]">Daniel Eduardo</span>
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 animate-fade-in">
+                    Cursando Desenvolvimento de Sistemas na EEEP Maria Célia Pinheiro Falcão.<br>
+                     Apenas um garoto empolgado para aprender e descobrir tudo o que este fascinante mundo da tecnologia tem a oferecer.
+                </p>
+                <div class="flex flex-wrap gap-4 animate-fade-in">
+                    <button onclick="scrollToSection('projetos')" class="px-6 py-3 bg-[#DC143C] text-white rounded-lg font-medium hover:bg-[#B01030] dark:bg-[#FF6B81] dark:hover:bg-[#E05571] transition-all duration-300 hover:scale-105">
+                        Meus Projetos
+                    </button>
+                    <button onclick="scrollToSection('contato')" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
+                        Contate-me
+                    </button>
+                </div>
+            </div>
+           
+            <div class="md:w-1/2 flex justify-center animate-slide-up">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-[#DC143C] dark:border-[#FF6B81] shadow-lg transition-all duration-500 hover:shadow-xl">
+                    <img src="daneo.png" alt="" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sobre" class="py-20 bg-white dark:bg-gray-800 rounded-lg mb-16 shadow-md animate-fade-in">
+            <div class="max-w-6xl mx-auto px-6">
+              <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">
+                <span class="text-[#DC143C] dark:text-[#FF6B81]">Sobre Mim</span>
+              </h2>
+             
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center animate-slide-up">
+                  <div class="w-64 h-64 bg-[#DC143C] dark:bg-[#FF6B81] rounded-lg p-1 transition-all duration-500">
+                    <div class="w-full h-full bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                      <img src="daneo.png" alt="" class="w-60 h-60 rounded-lg object-cover">
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="md:w-2/3 md:pl-12 animate-fade-in">
+                  <h3 class="text-2xl font-semibold mb-6 dark:text-white">Quem sou eu?</h3>
+                  <p class="text-gray-600 mb-6 leading-relaxed dark:text-gray-300">
+                    Meu nome é Daniel Eduardo, um jovem que entrou no mundo da tecnologia e inovação.
+                    Sempre tive curiosidade pelo mundo digital e como as coisas funcionam por trás das telas.
+                  </p>
+                  <p class="text-gray-600 mb-6 leading-relaxed dark:text-gray-300">
+                    Atualmente, estou focado em desenvolver minhas habilidades em desenvolvimento web, criando projetos pessoais e contribuindo para a comunidade de tecnologia.
+                  </p>
+                 
+                  <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="flex-shrink-0 bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fas fa-calendar-alt text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">Idade</h4>
+                        <p class="text-gray-600 dark:text-gray-300">17 anos</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="flex-shrink-0 bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fas fa-map-marker-alt text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">Localização</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Brasil</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="flex-shrink-0 bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fas fa-graduation-cap text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">Formação</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Desenvolvimento de Sistemas</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="flex-shrink-0 bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fas fa-envelope text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">Email</h4>
+                        <p class="text-gray-600 dark:text-gray-300">daneoxp@gmail.com</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+
+        <section id="projetos" class="mb-16 animate-fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
+                Meus <span class="text-[#DC143C] dark:text-[#FF6B81]">Projetos</span>
+            </h2>
+           
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-gray-800/50">
+                    <div class="">
+                        <img src="foto1.png" alt="" class="w-full">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">SISEP</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Uma plataforma digital que simplifica o gerenciamento de processos seletivos em escolas, permitindo o cadastro de cursos, cotas e alunos. O sistema oferece uma visão clara da classificação dos alunos, facilitando o acompanhamento das notas e status em tempo real.</p>
+                    </div>
+                </div>
+               
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-gray-800/50">
+                    <div class="">
+                        <img src="foto2.jpg" alt="" class="w-full">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Piano Tutor</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">O projeto é um piano intuitivo com Arduino, que utiliza LEDs coloridos para orientar iniciantes nas teclas a serem tocadas, facilitando o aprendizado musical de forma mais interativa e divertida. Ele visa tornar o processo de aprendizagem mais acessível e espontâneo, comparado ao método tradicional.</p>
+                    </div>
+                </div>
+               
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-gray-800/50">
+                    <div class="">
+                        <img src="foto3.jpg" alt="" class="w-full">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">CONECTALOCAL</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Uma plataforma digital que conecta pequenos negócios locais a clientes, fornecedores e parceiros, substituindo panfletos impressos e idas ao mercado. O aplicativo permite que os proprietários de negócios gerenciem seus perfis, ofertas e promoções, enquanto os clientes têm acesso a um ambiente online e prático.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="contato" class="py-20 bg-white dark:bg-gray-800 animate-fade-in">
+            <div class="max-w-4xl mx-auto px-6">
+              <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">
+                <span class="text-[#DC143C] dark:text-[#FF6B81]">Entre em Contato</span>
+              </h2>
+             
+              <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md p-8 md:p-10 transition-all duration-500 hover:shadow-lg">
+                <form class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="animate-slide-up">
+                      <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seu nome</label>
+                      <input type="text" id="nome" class="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-[#DC143C] focus:border-[#DC143C] block w-full p-2.5 dark:placeholder-gray-400 transition-all duration-300 focus:scale-[1.02]" placeholder="Nome completo" required>
+                    </div>
+                    <div class="animate-slide-up">
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seu email</label>
+                      <input type="email" id="email" class="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-[#DC143C] focus:border-[#DC143C] block w-full p-2.5 dark:placeholder-gray-400 transition-all duration-300 focus:scale-[1.02]" placeholder="seu@email.com" required>
+                    </div>
+                  </div>
+                  <div class="animate-slide-up">
+                    <label for="mensagem" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sua mensagem</label>
+                    <textarea id="mensagem" rows="6" class="block p-2.5 w-full text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-600 rounded-lg border border-gray-300 dark:border-gray-500 focus:ring-[#DC143C] focus:border-[#DC143C] dark:placeholder-gray-400 transition-all duration-300 focus:scale-[1.02]" placeholder="Escreva sua mensagem aqui..."></textarea>
+                  </div>
+                  <button type="submit" class="w-full md:w-auto px-10 py-3 text-center bg-[#DC143C] dark:bg-[#FF6B81] text-white rounded-lg font-medium hover:bg-[#B01030] dark:hover:bg-[#E05571] transition-all duration-300 hover:scale-105 animate-fade-in">
+                    Enviar mensagem
+                  </button>
+                </form>
+               
+                <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-600 animate-fade-in">
+                  <h3 class="text-xl font-semibold mb-6 dark:text-white">Outras formas de contato</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fas fa-envelope text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">Email</h4>
+                        <p class="text-gray-600 dark:text-gray-300">daneoxp@gmail.com</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="bg-green-100 dark:bg-green-900/30 p-3 rounded-full mr-4">
+                        <i class="fab fa-whatsapp text-green-500 dark:text-green-400"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">WhatsApp</h4>
+                        <p class="text-gray-600 dark:text-gray-300">+55 (88) 99627-7240</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center transition-all duration-300 hover:scale-105">
+                      <div class="bg-[#DC143C]/10 dark:bg-[#FF6B81]/10 p-3 rounded-full mr-4">
+                        <i class="fab fa-linkedin-in text-[#DC143C] dark:text-[#FF6B81]"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold dark:text-white">LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/daniel-eduardo-de-carvalho-52881b2a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-gray-600 dark:text-gray-300">linkedin.com/in/daniel-eduardo</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+    </main>
+
+
+    <footer class="bg-white dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center">
+                <div class="flex space-x-6 mb-6">
+                    <a href="https://github.com/daneo12" target="_blank" class="text-gray-700 dark:text-gray-300">
+                        <i class="fab fa-github text-3xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/daniel-eduardo-de-carvalho-52881b2a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-gray-700 dark:text-gray-300">
+                        <i class="fab fa-linkedin-in text-3xl"></i>
+                    </a>
+                    <a href="https://instagram.com/xxdaneo_" target="_blank" class="text-gray-700 dark:text-gray-300">
+                        <i class="fab fa-instagram text-3xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="" class="hover:underline">Daniel Eduardo</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
+</body>
+<script>
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = document.getElementById('menu-icon');
+const closeIcon = document.getElementById('close-icon');
+
+mobileMenuButton.addEventListener('click', () => {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+    
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+    
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('scale-y-0');
+    mobileMenu.classList.toggle('scale-y-100');
+});
+
+document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('scale-y-100');
+        mobileMenu.classList.add('scale-y-0');
+    });
+});
+
+window.addEventListener('scroll', () => {
+    if (mobileMenuButton.getAttribute('aria-expanded') === 'true') {
+        mobileMenuButton.click();
+    }
+});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
